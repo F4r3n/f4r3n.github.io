@@ -1,4 +1,72 @@
 import adapter from '@sveltejs/adapter-static';
+import * as fs from 'node:fs';
+import { Octokit } from '@octokit/core';
+import 'dotenv/config'
+
+
+//https://api.github.com/users/f4r3n/repos
+//https://api.github.com/repos/f4r3n/Sudoku/languages
+
+const octokit = new Octokit({
+    auth: process.env.GITHUB_API
+})
+async function fetchGithubRepositories(inOwner) {
+
+    return await octokit.request('GET /users/{owner}/repos', {
+        owner: inOwner,
+        headers: {
+          'X-GitHub-Api-Version': '2022-11-28'
+        }
+      })
+}
+
+async function fetchGithubLanguages(inOwner, inRepo) {
+
+    return await octokit.request('GET /repos/{owner}/{repo}/languages', {
+        owner: inOwner,
+        repo: inRepo,
+        headers: {
+          'X-GitHub-Api-Version': '2022-11-28'
+        }
+      })
+}
+
+
+async function formatRepositories(inRespositories) {
+    let repos = {}
+    
+    for(let repo of inRespositories) {
+        
+        let result = (await fetchGithubLanguages("f4r3n", repo.name)).data
+
+        repos[repo.name] = {
+            created_at: repo.created_at,
+            updated_at: repo.updated_at,
+            pushed_at: repo.pushed_at,
+            name: repo.name,
+            private: repo.private,
+            fork: repo.fork,
+            size: repo.size,
+            description: repo.description,
+            url: repo.html_url,
+            languages: result
+        }
+
+        
+    }
+    return repos;
+}
+const dev = process.argv.includes('dev');
+console.log(dev)
+if(!dev || false)
+{
+    console.log("Build repositories file")
+    const repositories = (await fetchGithubRepositories("f4r3n")).data
+    let repos = await formatRepositories(repositories)
+    fs.writeFileSync("./src/lib/assets/repositories.json", JSON.stringify(repos))
+}
+
+
 
 export default {
     kit: {
@@ -11,5 +79,6 @@ export default {
             precompress: false,
             strict: true
         })
-    }
+    },
+
 };
