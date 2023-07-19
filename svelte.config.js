@@ -58,12 +58,18 @@ async function formatRepositories(inRespositories) {
 }
 const dev = process.argv.includes('dev');
 console.log(dev)
-if(!dev || false)
+const force = false
+if(!dev || force)
 {
-    console.log("Build repositories file")
-    const repositories = (await fetchGithubRepositories("f4r3n")).data
-    let repos = await formatRepositories(repositories)
-    fs.writeFileSync("./src/lib/assets/repositories.json", JSON.stringify(repos))
+    const path = "./src/lib/assets/repositories.json";
+    if(!fs.existsSync(path) || force) {
+        console.log("Build repositories file")
+
+        const repositories = (await fetchGithubRepositories("f4r3n")).data
+        let repos = await formatRepositories(repositories)
+        fs.writeFileSync("./src/lib/assets/repositories.json", JSON.stringify(repos))
+    }
+
 }
 
 

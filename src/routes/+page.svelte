@@ -20,15 +20,7 @@
     ];
 
     function getDomain() {
-        
-        /*if (window !== undefined) {
-            if (window.location.origin.indexOf("localhost")) {
-                return "http://guillaume.kotulski.dev";
-            } else {
-                return "";
-            }
-        }*/
-        return ""
+        return "http://guillaume.kotulski.dev"
     }
 
     let currentNav = 0;
