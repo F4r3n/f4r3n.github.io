@@ -34,6 +34,7 @@
             {#if !n.isLink}
                 <button
                     class="item"
+                    class:item-selected={currentNav === i}
                     on:click={() => {
                         currentNav = i;
                     }}
@@ -62,7 +63,7 @@
         height: 100%;
     }
 
-    .nav button {
+    .nav .item {
         all: unset;
 
         width: fit-content;
@@ -85,6 +86,11 @@
         font-weight: bold;
         border-bottom: 5px solid var(--quaternary-color);
     }
+
+    .item-selected {
+        border-bottom: 5px solid var(--quaternary-color) !important; 
+    }
+
 
     .right {
         position: absolute;
