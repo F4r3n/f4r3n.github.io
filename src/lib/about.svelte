@@ -74,6 +74,10 @@
         .row-adaptive {
             display: flex;
             flex-direction: column;
+        } 
+
+        p {
+            max-width: 95%;
         }
     }
 

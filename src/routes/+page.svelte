@@ -40,7 +40,7 @@
                     >{n.name}
                 </button>
             {:else}
-                <a class="item" href={getDomain() + n.href}>{n.name}</a>
+                <a class="item" target="_blank" href={getDomain() + n.href}>{n.name}</a>
             {/if}
         {/each}
     </div>
@@ -55,6 +55,7 @@
         --secondary-color: #7c9989;
         --tertiary-color: #e6d3d1;
         --quaternary-color: #99706d;
+        --fith-color:#999184
     }
 
     .component {
@@ -66,11 +67,14 @@
 
         width: fit-content;
         border-bottom: 5px solid var(--tertiary-color);
+        color:var(--fith-color);
+        font-weight: bold;
         font-size: larger;
     }
     .nav a {
         all: unset;
-
+        color:var(--fith-color);
+        font-weight: bold;
         width: fit-content;
         border-bottom: 5px solid var(--tertiary-color);
     }
