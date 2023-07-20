@@ -1,10 +1,11 @@
 <script>
 
+const linkedinURL = "https://www.linkedin.com/in/guillaume-kotulski-008a11103/"
 </script>
 
 <main>
     <div class="row-adaptive full-height">
-        <div  class="left-half" />
+        <div  class="left-half"/>
         <div class="column half right-half">
             <div class="t1 upper top">Guillaume Kotulski</div>
             <p>6 years of experience as a Software Engineer
@@ -13,7 +14,7 @@
                 I learnt to code in high school. Back then, I used to write my code with a pen & paper during lessons
                 and after school I transferred all of it to my computer. Since then, my passion for new technologies has never run out!
                 I always have new ideas to implement, new articles to read. All the things I learn I am always eager to share it with friends and colleagues. 
-                Outside of work I am a passionate cyclist. You can find me learning Japanese, coding on personal projects, discovering new board games! Feel free to reach out on LinkedIn</p>
+                Outside of work I am a passionate cyclist. You can find me learning Japanese, coding on personal projects, discovering new board games! Feel free to reach out on <a href={linkedinURL} target="_blank">LinkedIn</a></p>
         </div>
     </div>
 

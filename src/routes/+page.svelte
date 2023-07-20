@@ -29,22 +29,25 @@
 </script>
 
 <main class="full-height">
-    <div class="column right nav">
-        {#each nav as n, i}
-            {#if !n.isLink}
-                <button
-                    class="item"
-                    class:item-selected={currentNav === i}
-                    on:click={() => {
-                        currentNav = i;
-                    }}
-                    >{n.name}
-                </button>
-            {:else}
-                <a class="item" target="_blank" href={getDomain() + n.href}>{n.name}</a>
-            {/if}
-        {/each}
+    <div class="right">
+        <div class="column nav">
+            {#each nav as n, i}
+                {#if !n.isLink}
+                    <button
+                        class="item"
+                        class:item-selected={currentNav === i}
+                        on:click={() => {
+                            currentNav = i;
+                        }}
+                        >{n.name}
+                    </button>
+                {:else}
+                    <a class="item" target="_blank" href={getDomain() + n.href}>{n.name}</a>
+                {/if}
+            {/each}
+        </div>
     </div>
+
     <div class="component">
         <svelte:component this={nav[currentNav].component} />
     </div>
@@ -62,6 +65,7 @@
     .component {
         height: 100%;
     }
+
 
     .nav .item {
         all: unset;
@@ -93,7 +97,8 @@
 
 
     .right {
-        position: absolute;
+        position: fixed;
+        height: 100%;
         left: calc(100% - 90px);
         top: 10px;
     }
