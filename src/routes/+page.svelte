@@ -1,6 +1,8 @@
 <script lang="ts">
     import About from "$lib/about.svelte";
     import Projects from "$lib/projects.svelte";
+
+    
     let nav = [
         {
             name: "about",
@@ -121,6 +123,4 @@
         font-size: larger;
     }
 
-    main {
-    }
 </style>

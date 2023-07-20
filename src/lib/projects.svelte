@@ -1,9 +1,22 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import repositoriesJSON from "$lib/assets/repositories.json";
-    //https://api.github.com/repos/f4r3n/Sudoku/languages
-    let repositories = [];
-    let customOptions = {
+    
+    type Repository = {
+        description: string | null;
+        size: number;
+        private: boolean;
+        fork: boolean;
+        url: string;
+        name: string;
+    };
+
+    interface CustomOptionRepository {
+        [key: string]: { visible: boolean };
+    }
+
+    let repositories: any[] = [];
+    let customOptions: CustomOptionRepository = {
         OpenglLearning: {
             visible: false,
         },
@@ -25,18 +38,18 @@
         );
     });
 
-    function shouldRepositoryBeVisible(inName) {
+    function shouldRepositoryBeVisible(inName: string) {
         const hasProperty = Object.hasOwn(customOptions, inName);
         if (hasProperty && Object.hasOwn(customOptions[inName], "visible"))
             return customOptions[inName].visible;
         return true;
     }
 
-    function isValidRepository(inRepository) {
+    function isValidRepository(inRepository: Repository) {
         return (
-            shouldRepositoryBeVisible(inRepository.name) 
-            && inRepository.description !== null
-            && inRepository.size > 10 &&
+            shouldRepositoryBeVisible(inRepository.name) &&
+            inRepository.description !== null &&
+            inRepository.size > 1 &&
             !inRepository.private &&
             !inRepository.fork
         );
@@ -51,14 +64,14 @@
         {#if repositories !== null}
             {#each repositories as repository}
                 {#if isValidRepository(repository)}
-                    <div class="column" >
+                    <div class="column">
                         <div class="row">
                             <a href={repository.url}>{repository.name}</a>
                             {#each Object.keys(repository.languages).slice(0, 2) as language}
                                 <div>{language}</div>
                             {/each}
                         </div>
-                            <div class="description">{repository.description}</div>
+                        <div class="description">{repository.description}</div>
                     </div>
                 {/if}
             {/each}
@@ -76,10 +89,6 @@
         padding-bottom: 10px;
     }
 
-    .description {
-        
-    }
-
     .column {
         display: flex;
         flex-direction: column;
@@ -94,6 +103,4 @@
         flex-direction: row;
         gap: 5px;
     }
-
-
 </style>

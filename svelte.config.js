@@ -1,4 +1,5 @@
 import adapter from '@sveltejs/adapter-static';
+import { vitePreprocess } from '@sveltejs/kit/vite';
 import * as fs from 'node:fs';
 import { Octokit } from '@octokit/core';
 import 'dotenv/config'
@@ -57,7 +58,7 @@ async function formatRepositories(inRespositories) {
     return repos;
 }
 const dev = process.argv.includes('dev');
-console.log(dev)
+
 const force = false
 if(!dev || force)
 {
@@ -75,6 +76,7 @@ if(!dev || force)
 
 
 export default {
+    preprocess: vitePreprocess(),
     kit: {
         adapter: adapter({
             // default options are shown. On some platforms
