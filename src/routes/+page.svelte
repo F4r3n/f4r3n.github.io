@@ -20,7 +20,7 @@
         },
         {
             name: "CV",
-            href: cv,
+            href: "/cv.pdf",
             isLink: true,
         },
     ];
