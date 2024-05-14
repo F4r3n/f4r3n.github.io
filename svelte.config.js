@@ -86,8 +86,5 @@ export default {
             fallback: undefined,
             precompress: false,
             strict: true
-        }),
-        base:"f4r3n.github.io"
-    },
-
+        })},
 };
