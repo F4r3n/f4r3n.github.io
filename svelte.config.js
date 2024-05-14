@@ -3,7 +3,6 @@ import { vitePreprocess } from '@sveltejs/kit/vite';
 import * as fs from 'node:fs';
 import { Octokit } from '@octokit/core';
 import 'dotenv/config'
-import { base } from '$app/paths';
 
 
 //https://api.github.com/users/f4r3n/repos

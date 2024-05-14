@@ -1,7 +1,6 @@
 <script lang="ts">
     import About from "$lib/about.svelte";
     import Projects from "$lib/projects.svelte";
-    import cv from "$lib/assets/cv.pdf"
 
     function getDomain() {
         return "http://guillaume.kotulski.dev"
