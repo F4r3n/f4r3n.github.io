@@ -1,7 +1,11 @@
 <script lang="ts">
     import About from "$lib/about.svelte";
     import Projects from "$lib/projects.svelte";
+    import cv from "$lib/assets/cv.pdf"
 
+    function getDomain() {
+        return "http://guillaume.kotulski.dev"
+    }
     
     let nav = [
         {
@@ -16,14 +20,12 @@
         },
         {
             name: "CV",
-            href: "/cv",
+            href: cv,
             isLink: true,
         },
     ];
 
-    function getDomain() {
-        return "http://guillaume.kotulski.dev"
-    }
+
 
     let currentNav = 0;
 </script>
@@ -42,7 +44,7 @@
                         >{n.name}
                     </button>
                 {:else}
-                    <a class="item" target="_blank" href={getDomain() + n.href}>{n.name}</a>
+                    <a class="item" target="_blank" href={n.href}>{n.name}</a>
                 {/if}
             {/each}
         </div>
