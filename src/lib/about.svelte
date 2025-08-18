@@ -7,10 +7,11 @@
 <main class="min-h-screen w-full">
   <div class="flex flex-col md:flex-row h-full">
     <!-- Left half -->
-    <div
-      class="md:w-1/2 h-64 md:h-full bg-center bg-cover"
-      style="background-image: url({devImage});"
-    ></div>
+    <img
+      src={devImage}
+      class="md:w-1/2 h-64 md:h-full object-cover object-center"
+      alt="Developer"
+    />
 
     <!-- Right half -->
     <div class="md:w-1/2 flex flex-col px-5 py-6">
@@ -25,8 +26,10 @@
         out! I always have new ideas to implement, new articles to read. All the
         things I learn I am always eager to share it with friends and
         colleagues. Outside of work I am a passionate cyclist. You can find me
-        learning Japanese, coding on personal projects, discovering new board
-        games! Feel free to reach out on
+        learning Japanese, coding on <a
+          class="text-blue-600 hover:underline"
+          href="/projects">personal projects</a
+        >, discovering new board games! Feel free to reach out on
         <a
           href={linkedinURL}
           target="_blank"
