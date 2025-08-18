@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import repositoriesJSON from "$lib/assets/repositories.json";
+  import { goto } from "$app/navigation";
 
   type Repository = {
     description: string | null;
@@ -144,51 +145,49 @@
       {#if isValidRepository(repository)}
         <div class="card bg-base-100 shadow-md hover:shadow-xl transition">
           <div class="card-body">
-            <!-- Header -->
-            <div class="flex items-center justify-between">
-              <a
-                class="card-title link link-hover"
-                href={repository.url}
-                target="_blank"
-              >
-                {repository.name}
-              </a>
-            </div>
-
-            <!-- Description -->
-            <p class="text-sm text-base-content/90 mt-2">
-              {repository.description}
-            </p>
-
-            <!-- Languages -->
-            {#if repository.languages}
-              <div class="mt-4">
-                <!-- Progress bar -->
-                <div class="flex h-2 rounded overflow-hidden">
-                  {#each Object.entries(repository.languages) as [lang, value]}
-                    <div
-                      class={`${getLanguageColor(lang).bg}`}
-                      style:width="{value}%"
-                    ></div>
-                  {/each}
-                </div>
-
-                <!-- Labels -->
-                <div class="flex flex-wrap gap-3 mt-2 text-sm">
-                  {#each Object.entries(repository.languages).slice(0, 3) as [lang, value]}
-                    <div class="flex items-center gap-1">
-                      <span
-                        class={`w-3 h-3 rounded-full ${getLanguageColor(lang).color}`}
-                      ></span>
-                      <div class={`${getLanguageColor(lang).color}`}>
-                        {lang}
-                        {Math.round(value)}%
-                      </div>
-                    </div>
-                  {/each}
+            <a href={repository.url} target="_blank">
+              <!-- Header -->
+              <div class="flex items-center justify-between">
+                <div class="card-title">
+                  {repository.name}
                 </div>
               </div>
-            {/if}
+
+              <!-- Description -->
+              <p class="text-sm text-base-content/90 mt-2">
+                {repository.description}
+              </p>
+
+              <!-- Languages -->
+              {#if repository.languages}
+                <div class="mt-4">
+                  <!-- Progress bar -->
+                  <div class="flex h-2 rounded overflow-hidden">
+                    {#each Object.entries(repository.languages) as [lang, value]}
+                      <div
+                        class={`${getLanguageColor(lang).bg}`}
+                        style:width="{value}%"
+                      ></div>
+                    {/each}
+                  </div>
+
+                  <!-- Labels -->
+                  <div class="flex flex-wrap gap-3 mt-2 text-sm">
+                    {#each Object.entries(repository.languages).slice(0, 3) as [lang, value]}
+                      <div class="flex items-center gap-1">
+                        <span
+                          class={`w-3 h-3 rounded-full ${getLanguageColor(lang).color}`}
+                        ></span>
+                        <div class={`${getLanguageColor(lang).color}`}>
+                          {lang}
+                          {Math.round(value)}%
+                        </div>
+                      </div>
+                    {/each}
+                  </div>
+                </div>
+              {/if}
+            </a>
           </div>
         </div>
       {/if}

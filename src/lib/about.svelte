@@ -27,13 +27,13 @@
         things I learn I am always eager to share it with friends and
         colleagues. Outside of work I am a passionate cyclist. You can find me
         learning Japanese, coding on <a
-          class="text-blue-600 hover:underline"
+          class="text-blue-600 link link-hover"
           href="/projects">personal projects</a
         >, discovering new board games! Feel free to reach out on
         <a
           href={linkedinURL}
           target="_blank"
-          class="text-blue-600 hover:underline">LinkedIn</a
+          class="text-blue-600 link link-hover">LinkedIn</a
         >
       </p>
     </div>
