@@ -4,7 +4,7 @@
     "https://www.linkedin.com/in/guillaume-kotulski-008a11103/";
 </script>
 
-<main class="h-full w-full">
+<main class="min-h-screen w-full">
   <div class="flex flex-col md:flex-row h-full">
     <!-- Left half -->
     <div
